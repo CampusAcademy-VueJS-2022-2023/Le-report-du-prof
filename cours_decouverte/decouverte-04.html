@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 01</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" placeholder="Votre nom" v-model="nom">
+        <p><textarea v-model="texte" cols="40" rows="7"></textarea></p>
+
+        Bonjour {{ nom }}
+        <div style="white-space: pre-line">{{ texte }}</div>
+    </div>
+
+    <script>
+        app = Vue.createApp({
+            data(){
+                return{
+                    nom: '',
+                    texte:''
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>

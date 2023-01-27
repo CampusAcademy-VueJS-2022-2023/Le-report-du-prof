@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 02</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        {{ transformString }}
+    </div>
+
+    <script>
+        app = Vue.createApp({
+            data(){
+                return{
+                    string: "Une phrase au hasard"
+                }
+            },
+            computed:{
+              transformString(){
+                  return this.string.toLowerCase();
+              }
+            }
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>

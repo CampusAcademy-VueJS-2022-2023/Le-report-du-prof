@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 3</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Nombre de clics sur le bouton : {{ compteur }}</p>
+    <button v-on:click="compteur++">Incrémenter le compteur</button>
+</div>
+
+<script>
+    app = Vue.createApp({
+        data() {
+            return {
+                compteur: 7
+            }
+        }
+    })
+    app.mount('#app');
+
+</script>
+
+</body>
+</html>

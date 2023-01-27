@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 01</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>Je test {{ appName.toUpperCase() }}</h2>
+        <p>Le projet est {{ complexe ? "dur" : "simple" }}</p>
+    </div>
+
+    <script>
+        app = Vue.createApp({
+            data(){
+                return {
+                    appName: "mon super projet 1",
+                    complexe: false
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>

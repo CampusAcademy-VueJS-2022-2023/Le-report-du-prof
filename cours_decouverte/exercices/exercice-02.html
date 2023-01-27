@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{ horloge }}</p>
+</div>
+
+<script>    
+    app = Vue.createApp({
+    data() {
+        return {
+            horloge: new Date().toLocaleTimeString()
+        }
+    }
+})
+    const appVue = app.mount('#app');
+    setInterval(() => {
+        appVue.horloge = new Date().toLocaleTimeString();
+    }, 1000)
+
+</script>
+
+</body>
+</html>

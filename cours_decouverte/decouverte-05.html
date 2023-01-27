@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 05</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <img @mousemove="getCoords" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png" width="700">
+        <div>{{ xy }}</div>
+        <button @click.once="action">Cliquez ici</button>
+    </div>
+
+    <script>
+        app = Vue.createApp({
+            data(){
+                return{
+                    xy: ''
+                }
+            },
+            methods:{
+                getCoords(event){
+                    this.xy = "x=" + event.offsetX + " / y=" + event.offsetX
+                },
+                action(){
+                    console.log("Je suis cliqué !")
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 01</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <p>Il est précisément {{ dateFr }} (affichageFR)</p>
+        <p>Il est précisément {{ dateUs }} (affichageUS)</p>
+    </div>
+
+    <script>
+        app = Vue.createApp({
+
+            data(){
+                return{
+                    date: new Date()
+                }
+            },
+            computed:{
+                dateFr(){
+                    return this.date.toLocaleTimeString()
+                },
+                dateUs(){
+                    return this.date.toLocaleTimeString('en-US')
+                }
+            }
+
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>

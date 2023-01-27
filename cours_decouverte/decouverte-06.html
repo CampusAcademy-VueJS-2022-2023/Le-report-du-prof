@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte 06</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .rouge{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <p>Quels langages de prog connaissez vous ?</p>
+        <input type="text" v-model="unLang" @keyup.enter="ajouter">
+        <input type="button" value="valider" @click="ajouter">
+        <!--Je veux ajouter un langage quand j'appuie sur "entrer" également-->
+
+        <!-- ici, j'affiche les langages -->
+        <ul>
+            <li v-for="langage in langages">
+                <input type="checkbox" v-model="langage.etatCase">
+                <span :class="{rouge:langage.etatCase}">
+
+                    Le texte {{ langage.nom }}
+
+                    <span v-if="langage.etatCase && langage.nom == 'javascript'"> est coché, mon langage préféré !</span>
+                    <span v-else-if="langage.etatCase"> est coché</span>
+                    <span v-else>est décoché</span>
+                </span>
+            </li>
+        </ul>
+
+        <!--v-once-->
+        <div v-once>Valeur de départ : {{ nombre }}</div>
+        <div>Valeur finale : {{ nombre }}</div>
+        <button type="button" @click="nombre++">Incrémenter</button>
+
+    </div>
+
+    <script>
+        app = Vue.createApp({
+            data(){
+                return{
+                    unLang: '',
+                    langages: [],
+                    nombre: 15
+                }
+            },
+            methods:{
+                ajouter(){
+                    this.langages.push(
+                        {
+                            nom:this.unLang,
+                            etatCase: false
+                        }
+                    );
+
+                    // bonus : quand je click sur "valider", l'input texte se vide
+                    this.unLang = ''
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+
+</body>
+</html>
