@@ -30,7 +30,12 @@
             </template>
 
         </liste-jeux>
-        <liste-users titre="Les derniers loueurs inscrits" margin_top="mt-5" :listusers="users"></liste-users>
+
+        <liste-users titre="Les derniers loueurs inscrits" margin_top="mt-5" :listusers="users">
+            <template #rechercheuser>
+                <input type="text" v-model="rechercheUserText" >
+            </template>
+        </liste-users>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -58,7 +63,17 @@
                             'description': "De la coopération pour trouver ce que le profiler cherche à faire deviner à l'équipe. Attention, le profiler a interdiction de parler."
                         }
                     ],
-                    users: []
+                    users: [],
+                    rechercheUserText: ''
+                }
+            },
+            watch:{
+                rechercheUserText(recherche){
+
+                    if(recherche.includes('interdit')){
+                        this.rechercheUserText = '';
+                    }
+
                 }
             },
             created(){

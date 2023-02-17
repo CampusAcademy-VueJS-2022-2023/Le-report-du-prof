@@ -1,6 +1,6 @@
 const liste_jeux = {
     template: `
-        <h2 class="mt-5">{{ titre }}</h2>
+        <h2 class="mt-5">{{ capitalizeBizarre }}</h2>
         <slot name="presentation"></slot>
         <section class="d-flex mt-4">
             <div class="card" style="width: 18rem;" v-for="jeu in listjeux">
@@ -13,5 +13,24 @@ const liste_jeux = {
         </section>
         <slot name="phrase_finale"></slot>
     `,
-    props:['titre', 'listjeux']
+    props:['titre', 'listjeux'],
+    computed:{
+        capitalizeBizarre(){
+
+            const lettres = this.titre.split('');
+
+            for(i=0;i<lettres.length;i++){
+
+                if(i%2 == 0){
+
+                    lettres[i] = lettres[i].toUpperCase();
+
+                }
+
+            }
+
+            return lettres.join('');
+
+        }
+    }
 }

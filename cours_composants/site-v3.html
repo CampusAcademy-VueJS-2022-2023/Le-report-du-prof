@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site v3</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Link css animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .t-enter-active,
+        .t-leave-active {
+            transition: opacity 4s ease;
+        }
+
+        .t-enter-from,
+        .t-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <menu-site></menu-site>
+        <liste-jeux titre="Nos derniers jeux" :listjeux="jeux" @checkdispo="checkDisponibilite">
+
+            <template #presentation>
+                <p>
+                    Retrouvez nos derniers jeux de
+                    <span class="text-primary">stratégie</span>,
+                    <span class="text-danger">réflexion</span> ou
+                    <span class="text-success">d'ambiance</span>.
+                </p>
+            </template>
+
+            <template v-slot:jeunom="slotProps">
+                <strong>{{ slotProps.nomjeu }}</strong>
+            </template>
+
+            <template #phrase_finale>
+                <p>N'hésitez pas à <a href="#">proposer de nouveaux jeux</a>.</p>
+            </template>
+
+        </liste-jeux>
+
+        <liste-users titre="Les derniers loueurs inscrits" margin_top="mt-5" :listusers="users">
+            <template #rechercheuser>
+                <input type="text" v-model="rechercheUserText" >
+            </template>
+        </liste-users>
+
+        <h2 class="mt-5">Notre histoire</h2>
+        <p>
+            Aenean dapibus lacinia metus. Tincidunt curae; lectus condimentum parturient class class dictumst vestibulum. Sociosqu blandit commodo feugiat taciti, aenean habitasse aliquam sagittis nam eleifend eu. Elit auctor tincidunt rutrum congue nisl magnis dictumst integer auctor. Tellus ullamcorper vel per. Accumsan ligula scelerisque turpis non nascetur mauris dis mus mattis parturient sagittis varius. Nisi in torquent aliquam, inceptos orci diam litora cum magnis. Sit porta sed donec et turpis platea penatibus tempus turpis. Risus curae; curae; phasellus posuere taciti.
+        </p>
+        <p>
+            Porta phasellus litora hendrerit etiam leo. Sociis montes morbi justo nec nec. Imperdiet placerat aenean inceptos augue leo parturient vivamus etiam senectus donec rhoncus? Risus metus aliquam felis eu facilisis ad auctor dictumst morbi ullamcorper sollicitudin. Sagittis vulputate, platea dui. Faucibus enim sed cras diam nam dis dolor rutrum consequat ut faucibus. Taciti massa sagittis nostra. Feugiat ante proin dolor curae; eleifend. Egestas.
+        </p>
+
+        <button @click="lireSuiteHistoire = !lireSuiteHistoire" class="btn btn-sm btn-secondary">Afficher la suite</button>
+
+        <Transition enter-active-class="animate__animated animate__fadeInDown" leave-active-class="animate__animated animate__fadeOutDown">
+            <div v-if="lireSuiteHistoire">
+                <p>
+                    Nascetur sollicitudin odio natoque. Dictumst sem platea, pulvinar eleifend massa donec vel nec tristique eget. Odio quis et erat pretium nisl a senectus urna velit scelerisque lacinia eleifend. Sagittis himenaeos fusce augue nullam. Luctus consequat turpis quam enim sed integer sed fames nec adipiscing! Praesent aliquam condimentum tellus dictumst, parturient curabitur ipsum lobortis cum? Congue egestas, a urna dis non? Taciti condimentum elit praesent vel. Vivamus faucibus dolor massa. Hendrerit litora rutrum tempus arcu. Augue felis scelerisque praesent vel conubia, tristique hac. Proin luctus nam magna maecenas dapibus dictumst auctor suscipit morbi aliquam. Et nam proin ad, est magnis conubia penatibus non felis. Eros sollicitudin adipiscing dui habitant ipsum bibendum tellus eget pharetra elementum natoque. Non volutpat fusce condimentum sed sollicitudin vivamus? Tincidunt imperdiet taciti sodales natoque orci faucibus posuere sed eget class neque rutrum. Gravida sagittis.
+                </p>
+                <p>
+                    Nisl lobortis phasellus pellentesque eros ipsum praesent rutrum tellus primis maecenas nunc porta. Vivamus consequat ac ante, taciti vehicula elit phasellus enim quam tempus natoque viverra. Id ultrices gravida malesuada. Eu orci aenean dictum phasellus suscipit sapien quisque ac facilisi! Lorem parturient adipiscing posuere non lacinia nullam. Neque quis pharetra venenatis, tellus torquent habitant. Hendrerit tempus malesuada curabitur cras torquent magna feugiat dis cubilia aliquam ad. Pretium taciti at curae; mattis facilisis class purus ullamcorper metus! Duis posuere adipiscing massa ridiculus lacinia gravida diam auctor aptent maecenas lectus tempor. Varius pulvinar scelerisque egestas consectetur dis lorem massa quam cras. Sapien himenaeos lobortis class et libero aptent morbi odio dapibus, tempor erat. Condimentum lorem ornare parturient ultricies cursus senectus primis sociosqu metus. Ullamcorper mattis ligula, curae; phasellus conubia lacinia egestas aliquam euismod nam. Felis turpis morbi lorem platea urna cum torquent metus himenaeos mus sociis. Taciti leo ridiculus venenatis, porttitor.
+                </p>
+                <p>
+                    Blandit pharetra pulvinar commodo tellus. Fames eleifend turpis vitae laoreet curabitur scelerisque mattis eu donec sem. Sit praesent pharetra egestas magnis suspendisse? Congue rhoncus metus dis imperdiet blandit diam, lacinia iaculis sagittis. Ipsum taciti ultricies dui sit euismod platea vitae dictum. Netus at suspendisse consequat bibendum. Pellentesque pharetra risus tristique consectetur integer. Platea magnis a tellus ridiculus malesuada tortor erat.
+                </p>
+            </div>
+        </Transition>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="composants/menu.js"></script>
+    <script src="composants/liste_jeux.js"></script>
+    <script src="composants/liste_users.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+        app = Vue.createApp({
+
+            components:{
+                "menu-site" : menu,
+                "liste-jeux": liste_jeux,
+                "liste-users": liste_users
+            },
+            data(){
+                return{
+                    jeux: [
+                        {
+                            'nom': "Dixit",
+                            'description': "Un jeu avec des cartes qui ne veulent rien dire et qui vont pourtant nous servir à communiquer"
+                        },
+                        {
+                            'nom': "Profiler",
+                            'description': "De la coopération pour trouver ce que le profiler cherche à faire deviner à l'équipe. Attention, le profiler a interdiction de parler."
+                        }
+                    ],
+                    users: [],
+                    rechercheUserText: '',
+                    lireSuiteHistoire: false
+                }
+            },
+            watch:{
+                rechercheUserText(recherche){
+
+                    if(recherche.includes('interdit')){
+                        this.rechercheUserText = '';
+                    }
+
+                }
+            },
+            created(){
+                axios.get('https://randomuser.me/api/?results=3')
+                    .then(function(response){
+                        vm.users = response.data.results
+                    })
+            },
+            methods:{
+                checkDisponibilite(){
+                    alert('Ok, je check la dispo');
+                }
+            }
+
+        });
+        let vm = app.mount('#app');
+    </script>
+
+</body>
+</html>
