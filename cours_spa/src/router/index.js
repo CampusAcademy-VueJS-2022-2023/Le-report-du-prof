@@ -1,5 +1,6 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NotFound from '../components/NotFound.vue'
 
 const routes = [
   {
@@ -8,17 +9,31 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/inscrits',
+    name: 'inscrits',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/InscritListView.vue')
+  },
+  {
+    path: '/compteur',
+    name: 'compteur',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/CompteurDisplayView.vue')
+  },
+  {
+    path: '/404', name:'NotFound', component: NotFound
+  },
+  {
+    path: '/:catchAll(.*)', redirect: '404'
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
